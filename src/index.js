@@ -4,6 +4,7 @@ import Home from './pages/home/home'
 import reportWebVitals from './reportWebVitals'
 import Header from './componemts/header/header'
 import Footer from './componemts/footer/footer'
+import SignIn from './pages/signIn/signIn'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -13,6 +14,7 @@ root.render(
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/sign-in" element={<SignIn />} />
       </Routes>
       <Footer />
     </Router>

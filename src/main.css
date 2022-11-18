@@ -19,6 +19,10 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  height: 80vh;
+  margin-top: 0;
+  display: grid;
+  place-items: center;
 }
 
 .sr-only {
@@ -171,8 +175,7 @@ body {
   box-sizing: border-box;
   background-color: white;
   width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
+  height: 80%;
   padding: 2rem;
 }
 
