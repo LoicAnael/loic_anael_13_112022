@@ -1,12 +1,17 @@
 import '../../main.css'
-
+import { useNavigate } from 'react-router-dom'
 function SignIn() {
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    navigate('/user')
+  }
   return (
     <main class="main bg-dark">
       <section class="sign-in-content">
         <i class="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div class="input-wrapper">
             <label for="username">Username</label>
             <input type="text" id="username" />
