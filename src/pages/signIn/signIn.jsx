@@ -8,15 +8,17 @@ function SignIn() {
     password: '',
   })
   const navigate = useNavigate()
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-
-    const token = fetchUserToken({
+    const token = await fetchUserToken({
       email: values.email,
       password: values.password,
     })
-    console.log(token)
-    navigate('/user')
+    if (token) {
+      navigate('/user')
+    } else {
+      navigate('/sign-in')
+    }
   }
   const handleChange = (e) => {
     setValues({
@@ -24,6 +26,7 @@ function SignIn() {
       [e.target.name]: e.target.value,
     })
   }
+
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -52,6 +55,7 @@ function SignIn() {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
+          <span className="sr-only">email ou mot ded passe incorrect</span>
           <button className="sign-in-button">Sign In</button>
         </form>
       </section>
