@@ -7,6 +7,8 @@ function SignIn() {
     email: '',
     password: '',
   })
+  const [isInValidToken, setIsInValidToken] = useState(false)
+
   const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -14,10 +16,13 @@ function SignIn() {
       email: values.email,
       password: values.password,
     })
-    if (token) {
-      navigate('/user')
-    } else {
+
+    if (!token) {
+      setIsInValidToken(true)
       navigate('/sign-in')
+    } else if (token) {
+      setIsInValidToken(false)
+      navigate('/user')
     }
   }
   const handleChange = (e) => {
@@ -55,9 +60,11 @@ function SignIn() {
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <span className="sr-only">email ou mot ded passe incorrect</span>
           <button className="sign-in-button">Sign In</button>
         </form>
+        {isInValidToken ? (
+          <div className="error-message">Invalid username or password</div>
+        ) : null}
       </section>
     </main>
   )
