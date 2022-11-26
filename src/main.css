@@ -301,3 +301,40 @@ body {
   display: flex;
   gap: 5px;
 }
+
+.edit-profile {
+  width: 25rem;
+  height: 5.62rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.edit-profile__form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-profile__form input {
+  padding: 0.62rem;
+  border: 2px solid #c3cfd9;
+  color: #7f8284;
+  outline: none;
+}
+
+.edit-profile__button {
+  justify-content: space-evenly;
+  width: auto;
+  display: flex;
+}
+
+.button__update,
+.button__cancel {
+  border-color: #6458f5;
+  background-color: #fff;
+  color: #6458f5;
+  font-weight: bold;
+  padding: 0.62rem;
+  width: 10rem;
+}

@@ -2,12 +2,12 @@ import '../../main.css'
 import { fetchUserData } from '../../service/service'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSelector, displayUser } from '../../redux/userslice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 function Dashboard() {
+  const [isEditForm, setEditForm] = useState(false)
   // const [newFirstName, setNewFirstName] = useState('')
   // const [newLastName, setNewLastName] = useState('')
-
   const dispatch = useDispatch()
 
   const user = useSelector(userSelector)
@@ -24,6 +24,9 @@ function Dashboard() {
       })
       .catch((error) => console.log(error))
   })
+  const handleEdit = () => {
+    setEditForm(!isEditForm)
+  }
   return (
     <main className="main bg-dark">
       <div className="header">
@@ -32,7 +35,24 @@ function Dashboard() {
           <br />
           {user.firstName} {user.lastName}
         </h1>
-        <button className="edit-button">Edit Name</button>
+        {isEditForm ? (
+          <div className="edit-profile">
+            <div className="edit-profile__form">
+              <input type="text" id="firstName" required></input>
+              <input type="text" id="lastName" required></input>
+            </div>
+            <div className="edit-profile__button">
+              <button className="button__update">Update</button>
+              <button className="button__cancel" onClick={handleEdit}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button className="edit-button" onClick={handleEdit}>
+            Edit Name
+          </button>
+        )}
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">
