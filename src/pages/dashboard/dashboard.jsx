@@ -1,13 +1,34 @@
 import '../../main.css'
+import { fetchUserData } from '../../service/service'
+import { useDispatch, useSelector } from 'react-redux'
+import { userSelector, displayUser } from '../../redux/userslice'
+import { useEffect } from 'react'
 
 function Dashboard() {
+  // const [newFirstName, setNewFirstName] = useState('')
+  // const [newLastName, setNewLastName] = useState('')
+
+  const dispatch = useDispatch()
+
+  const user = useSelector(userSelector)
+  const token = user.token
+  console.log(user)
+
+  useEffect(() => {
+    fetchUserData({ token: token }).then((res) => {
+      console.log(res)
+      const firstName = res.body.firstName
+      const lastName = res.body.lastName
+      dispatch(displayUser({ firstName, lastName }))
+    })
+  })
   return (
     <main className="main bg-dark">
       <div className="header">
         <h1>
           Welcome back
           <br />
-          Tony Jarvis!
+          {user.firstName} {user.lastName}
         </h1>
         <button className="edit-button">Edit Name</button>
       </div>

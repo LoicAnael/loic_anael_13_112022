@@ -2,20 +2,24 @@ import '../../main.css'
 import { useNavigate } from 'react-router-dom'
 import { fetchUserToken } from '../../service/service'
 import { useState } from 'react'
+import { fillToken } from '../../redux/userslice'
+import { useDispatch } from 'react-redux'
 function SignIn() {
   const [values, setValues] = useState({
     email: '',
     password: '',
   })
   const [isInValidToken, setIsInValidToken] = useState(false)
-
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const token = await fetchUserToken({
       email: values.email,
       password: values.password,
     })
+    dispatch(fillToken({ token }))
 
     if (!token) {
       setIsInValidToken(true)
@@ -25,6 +29,7 @@ function SignIn() {
       navigate('/user')
     }
   }
+
   const handleChange = (e) => {
     setValues({
       ...values,

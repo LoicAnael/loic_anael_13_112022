@@ -18,8 +18,28 @@ export async function fetchUserToken(email, password) {
     }
 
     const data = await response.json()
-    const token = data.body.token
+    const token = data?.body.token
     return token
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export async function fetchUserData({ token }) {
+  const options = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+
+  try {
+    const response = await fetch(
+      'http://localhost:3001/api/v1/user/profile',
+      options
+    )
+    const res = await response.json()
+    return res
   } catch (err) {
     console.log(err)
   }
