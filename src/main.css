@@ -297,3 +297,7 @@ body {
 .error-message {
   color: red;
 }
+.item-gap {
+  display: flex;
+  gap: 5px;
+}

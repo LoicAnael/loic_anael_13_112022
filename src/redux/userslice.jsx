@@ -17,10 +17,15 @@ export const userSlice = createSlice({
       state.firstName = action.payload.firstName
       state.lastName = action.payload.lastName
     },
+    logout(state) {
+      state.token = null
+      state.firstName = ''
+      state.lastName = ''
+    },
   },
 })
 
-export const { displayUser, fillToken } = userSlice.actions
+export const { displayUser, fillToken, logout } = userSlice.actions
 
 export const userSelector = (state) => state.user
 

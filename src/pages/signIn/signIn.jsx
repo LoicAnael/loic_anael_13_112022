@@ -26,7 +26,7 @@ function SignIn() {
       navigate('/sign-in')
     } else if (token) {
       setIsInValidToken(false)
-      navigate('/user')
+      navigate('/profile')
     }
   }
 

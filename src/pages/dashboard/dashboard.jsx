@@ -15,12 +15,14 @@ function Dashboard() {
   console.log(user)
 
   useEffect(() => {
-    fetchUserData({ token: token }).then((res) => {
-      console.log(res)
-      const firstName = res.body.firstName
-      const lastName = res.body.lastName
-      dispatch(displayUser({ firstName, lastName }))
-    })
+    fetchUserData({ token: token })
+      .then((res) => {
+        console.log(res)
+        const firstName = res.body.firstName
+        const lastName = res.body.lastName
+        dispatch(displayUser({ firstName, lastName }))
+      })
+      .catch((error) => console.log(error))
   })
   return (
     <main className="main bg-dark">
