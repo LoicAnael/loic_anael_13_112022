@@ -303,8 +303,8 @@ body {
 }
 
 .edit-profile {
-  width: 25rem;
-  height: 5.62rem;
+  width: 400px;
+  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -317,7 +317,7 @@ body {
 }
 
 .edit-profile__form input {
-  padding: 0.62rem;
+  padding: 10px;
   border: 2px solid #c3cfd9;
   color: #7f8284;
   outline: none;
@@ -335,6 +335,6 @@ body {
   background-color: #fff;
   color: #6458f5;
   font-weight: bold;
-  padding: 0.62rem;
-  width: 10rem;
+  padding: 10px;
+  width: 160px;
 }

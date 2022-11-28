@@ -19,8 +19,6 @@ export const userSlice = createSlice({
     },
     logout(state) {
       state.token = null
-      state.firstName = ''
-      state.lastName = ''
     },
   },
 })

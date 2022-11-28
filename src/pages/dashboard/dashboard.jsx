@@ -1,31 +1,51 @@
 import '../../main.css'
-import { fetchUserData } from '../../service/service'
+import { fetchUserData, updateUserProfile } from '../../service/service'
 import { useDispatch, useSelector } from 'react-redux'
 import { userSelector, displayUser } from '../../redux/userslice'
 import { useEffect, useState } from 'react'
 
-function Dashboard() {
+const Dashboard = () => {
   const [isEditForm, setEditForm] = useState(false)
-  // const [newFirstName, setNewFirstName] = useState('')
-  // const [newLastName, setNewLastName] = useState('')
+  const [newFirstName, setNewFirstName] = useState('')
+  const [newLastName, setNewLastName] = useState('')
   const dispatch = useDispatch()
 
   const user = useSelector(userSelector)
   const token = user.token
-  console.log(user)
 
   useEffect(() => {
     fetchUserData({ token: token })
       .then((res) => {
-        console.log(res)
         const firstName = res.body.firstName
         const lastName = res.body.lastName
         dispatch(displayUser({ firstName, lastName }))
       })
       .catch((error) => console.log(error))
-  })
+  }, [])
+
   const handleEdit = () => {
     setEditForm(!isEditForm)
+  }
+  ////user change name////
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    console.log(newFirstName)
+    console.log(newLastName)
+
+    const update = updateUserProfile({
+      token: token,
+      firstName: newFirstName,
+      lastName: newLastName,
+    }).then((res) => {
+      //console.log(res)
+      fetchUserData({ token: token }).then((res) => {
+        const firstName = res.body.firstName
+        const lastName = res.body.lastName
+        dispatch(displayUser({ firstName, lastName }))
+        //console.log(res)
+        handleEdit()
+      })
+    })
   }
   return (
     <main className="main bg-dark">
@@ -38,11 +58,23 @@ function Dashboard() {
         {isEditForm ? (
           <div className="edit-profile">
             <div className="edit-profile__form">
-              <input type="text" id="firstName" required></input>
-              <input type="text" id="lastName" required></input>
+              <input
+                type="text"
+                value={newFirstName}
+                onChange={(e) => setNewFirstName(e.target.value)}
+                placeholder={user.firstName}
+              ></input>
+              <input
+                type="text"
+                value={newLastName}
+                onChange={(e) => setNewLastName(e.target.value)}
+                placeholder={user.lastName}
+              ></input>
             </div>
             <div className="edit-profile__button">
-              <button className="button__update">Update</button>
+              <button className="button__update" onClick={handleUpdate}>
+                Update
+              </button>
               <button className="button__cancel" onClick={handleEdit}>
                 Cancel
               </button>
