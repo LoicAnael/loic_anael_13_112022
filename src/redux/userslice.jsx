@@ -8,6 +8,7 @@ export const userSlice = createSlice({
     firstName: '',
     lastName: '',
     token: null,
+    isLoading: true,
   },
   reducers: {
     fillToken(state, action) {
@@ -20,10 +21,14 @@ export const userSlice = createSlice({
     logout(state) {
       state.token = null
     },
+    disableLoader(state) {
+      state.isLoading = false
+    },
   },
 })
 
-export const { displayUser, fillToken, logout } = userSlice.actions
+export const { displayUser, fillToken, logout, disableLoader } =
+  userSlice.actions
 
 export const userSelector = (state) => state.user
 

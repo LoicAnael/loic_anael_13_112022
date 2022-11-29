@@ -1,7 +1,7 @@
 import '../../main.css'
 import { fetchUserData, updateUserProfile } from '../../service/service'
 import { useDispatch, useSelector } from 'react-redux'
-import { userSelector, displayUser } from '../../redux/userslice'
+import { userSelector, displayUser, disableLoader } from '../../redux/userslice'
 import { useEffect, useState } from 'react'
 
 const Dashboard = () => {
@@ -19,6 +19,7 @@ const Dashboard = () => {
         const firstName = res.body.firstName
         const lastName = res.body.lastName
         dispatch(displayUser({ firstName, lastName }))
+        dispatch(disableLoader())
       })
       .catch((error) => console.log(error))
   }, [token, dispatch])
@@ -39,18 +40,24 @@ const Dashboard = () => {
         const firstName = res.body.firstName
         const lastName = res.body.lastName
         dispatch(displayUser({ firstName, lastName }))
+        dispatch(disableLoader())
         handleEdit()
       })
     })
   }
+
   return (
     <main className="main bg-dark">
       <div className="header">
-        <h1>
-          Welcome back
-          <br />
-          {user.firstName} {user.lastName}
-        </h1>
+        {user.isLoading ? (
+          <div>Loading...</div>
+        ) : (
+          <h1>
+            Welcome back
+            <br />
+            {user.firstName} {user.lastName}
+          </h1>
+        )}
         {isEditForm ? (
           <div className="edit-profile">
             <div className="edit-profile__form">
@@ -59,12 +66,14 @@ const Dashboard = () => {
                 value={newFirstName}
                 onChange={(e) => setNewFirstName(e.target.value)}
                 placeholder={user.firstName}
+                required
               ></input>
               <input
                 type="text"
                 value={newLastName}
                 onChange={(e) => setNewLastName(e.target.value)}
                 placeholder={user.lastName}
+                required
               ></input>
             </div>
             <div className="edit-profile__button">

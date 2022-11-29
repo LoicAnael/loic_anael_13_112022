@@ -26,16 +26,22 @@ function Header() {
             <span>Sign In</span>
           </Link>
         ) : (
-          <Link className="main-nav-item" to="/sign-in" onClick={handleLogout}>
+          <div className="main-nav item-gap">
             <div className="item-gap">
               <i className="fa fa-user-circle"></i>
               <span>{user.firstName}</span>
             </div>
             <div className="item-gap">
               <i className="fa fa-arrow-circle-right"></i>
-              <span>Sign out</span>
+              <Link
+                className="main-nav-item"
+                to="/sign-in"
+                onClick={handleLogout}
+              >
+                Sign out
+              </Link>
             </div>
-          </Link>
+          </div>
         )}
       </div>
     </nav>
