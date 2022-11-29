@@ -21,7 +21,7 @@ const Dashboard = () => {
         dispatch(displayUser({ firstName, lastName }))
       })
       .catch((error) => console.log(error))
-  }, [])
+  }, [token, dispatch])
 
   const handleEdit = () => {
     setEditForm(!isEditForm)
@@ -29,20 +29,16 @@ const Dashboard = () => {
   ////user change name////
   const handleUpdate = (e) => {
     e.preventDefault()
-    console.log(newFirstName)
-    console.log(newLastName)
 
-    const update = updateUserProfile({
+    updateUserProfile({
       token: token,
       firstName: newFirstName,
       lastName: newLastName,
-    }).then((res) => {
-      //console.log(res)
+    }).then(() => {
       fetchUserData({ token: token }).then((res) => {
         const firstName = res.body.firstName
         const lastName = res.body.lastName
         dispatch(displayUser({ firstName, lastName }))
-        //console.log(res)
         handleEdit()
       })
     })

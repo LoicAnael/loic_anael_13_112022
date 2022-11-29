@@ -29,6 +29,7 @@ export async function fetchUserData({ token }) {
   const options = {
     method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
   }
@@ -48,18 +49,18 @@ export async function updateUserProfile({ token, firstName, lastName }) {
   const options = {
     method: 'PUT',
     headers: {
+      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ firstName, lastName }),
   }
-  console.log(options)
+
   try {
     const response = await fetch(
       'http://localhost:3001/api/v1/user/profile',
       options
     )
     const res = await response.json()
-
     return res
   } catch (err) {
     console.log(err)
