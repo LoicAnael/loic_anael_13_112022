@@ -19,12 +19,10 @@ function SignIn() {
       email: values.email,
       password: values.password,
     })
+    localStorage.setItem('token', token)
     dispatch(fillToken({ token }))
 
-    if (!token) {
-      setIsInValidToken(true)
-      navigate('/sign-in')
-    } else if (token) {
+    if (token) {
       setIsInValidToken(false)
       navigate('/profile')
     }

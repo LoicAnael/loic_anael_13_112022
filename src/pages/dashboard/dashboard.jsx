@@ -35,14 +35,12 @@ const Dashboard = () => {
       token: token,
       firstName: newFirstName,
       lastName: newLastName,
-    }).then(() => {
-      fetchUserData({ token: token }).then((res) => {
-        const firstName = res.body.firstName
-        const lastName = res.body.lastName
-        dispatch(displayUser({ firstName, lastName }))
-        dispatch(disableLoader())
-        handleEdit()
-      })
+    }).then((res) => {
+      const firstName = res.body.firstName
+      const lastName = res.body.lastName
+      dispatch(displayUser({ firstName, lastName }))
+      dispatch(disableLoader())
+      handleEdit()
     })
   }
 
