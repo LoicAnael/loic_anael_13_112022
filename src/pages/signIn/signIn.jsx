@@ -25,6 +25,8 @@ function SignIn() {
     if (token) {
       setIsInValidToken(false)
       navigate('/profile')
+    } else {
+      setIsInValidToken(true)
     }
   }
 
