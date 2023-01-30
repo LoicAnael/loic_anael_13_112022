@@ -1,5 +1,24 @@
 # Project 13 Front End Developer ARGENTBANK OpenClassrooms
 
+## Title : Use an API for a bank user account with React
+
+## Mission
+
+The project is about a new start-up bank, Argent Bank, which is trying to break into the industry and needs help setting up its app. We obtained a two-part contract which is broken down into several phases:
+- Phase 1: User Authentication - Creation of a web application allowing customers to log in and manage their accounts and profile.
+- Phase 2: Transactions - This would be to specify the API endpoints needed for a possible second mission once we have completed the first.
+
+## Assignmenet
+
+Create the complete and responsive web application with React. As a starting point, we have provided you with static HTML and CSS for the home page, login page, and profile page.
+Use Redux to manage the state of the entire application.
+What the app should do (see details for each on our GitHub Issues templates):
+User can visit homepage
+User can login to the system
+User can log out of the system
+User can only see their own profile information after successfully logging in
+The user can modify the profile and keep the data in the database. 
+
 ## Technologies
 
 - JS
